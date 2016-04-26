@@ -1,0 +1,90 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>My UAV project</title>
+</head>
+<body>
+	
+<h1> Purpose of the project </h1>
+<p> Generate a spoofing GPS signal to make a flying a UAV out of control and hijack the UAV. GPS “spoofers” are devices that create false GPS signals to fool receivers into thinking that they are at a different location or different times, this type of attacks can be really useful in a multitude of scenarios.
+
+<h1> Three most pupolar GPS Spoofing ways</h1>
+<h2> 1. Non-flying zone spoofing. </h2>
+<h2> 2. Return-home point spoofing.</h2>
+<h2> 3. Waypoint spoofing.</h2>
+
+<h1> GPS Spoofing Principle </h1>
+<img src="http://s3.amazonaws.com/img.tnt/0049a7f/d989_l.jpg" width="600" height="500">
+
+<p>In GPS system, we choose electromagnetic wave as the signal, so we know the velocity of electromagnetic wave , c. Then we try to get the duration t1 between sent and arrived.And we get the equation as below: </p>
+
+<img src="http://s3.amazonaws.com/img.tnt/0960640/ac50_l.jpg">
+
+<p>This equation cannot be solved since it has three unknowns. So we can simply add 
+another two positions (satellites) whose coordinates are already known too. So we get the equation set as below: </p>
+<img src="http://s3.amazonaws.com/img.tnt/41a83d8/06b5_l.jpg">
+
+<p> Now, our position coordinate (x, y, z) can be solved out of the equations.
+But it is not enough in engineering practice.  
+Because local clock and satellite clock are not synchronized, there is a time deviation ∆t1 between them. The revised equation set as below: </p>
+<img src="http://s3.amazonaws.com/img.tnt/d43325d/5b23_l.jpg">
+
+<p>The clocks carried by each GPS satellites are high precision atomic clocks, which are in strict synchronization state. So we have the following equation: </p>
+
+<img src="http://s3.amazonaws.com/img.tnt/53c0fd8/41b3_l.jpg">
+
+<p>Still, we cannot solve this equation set for now. So we add the 4th satellite. 
+The equation set becomes:</p>
+<img src="http://s3.amazonaws.com/img.tnt/57d6415/289a_l.jpg">
+
+<h1> GPS Simulation with NI USRP and LabVIEW</h1>
+<p>NI USRP supports L1 GPS Simulation using the LabVIEW GPS toolkit.  LabVIEW with a NI USRP-2920, a stable 10 MHz reference clock, and 60 dB of fixed attenuation can simulate up to 24 hours with up to 12 satellites.</p>
+<img src="http://s3.amazonaws.com/img.tnt/76897cc/03b7_l.jpg">
+<h2>Hardware Requirements:</h2>
+<p>NI USRP-2920</p>
+<p>External reference clock (GPS is very sensitive to frequency offset and clock jitter, so an improved frequency source is recommended beyond the standard TCXO.  An OCXO is highly recommended, which provides a very precise frequency reference.)</p>
+
+<h2>Software Requirements:</h2>
+<p>LabVIEW 2011</p>
+<p>NI-USRP 1.0 Driver</p>
+<p>NI-GPS Toolkit 2.0</p>
+<p>Modulation Toolkit</p>
+<img src="https://decibel.ni.com/content/servlet/JiveServlet/showImage/102-22178-3-82517/GPS+Simulation.png" width="600" height="500">
+<p> <a href="https://decibel.ni.com/content/servlet/JiveServlet/download/22178-3-64509/niGPS%20Direct%20Streaming%20Generation%20-%20USRP.vi"> <strong>Click here to download GPS Direct Streaming Generation</strong></a>
+<p> <a href="http://www.navcen.uscg.gov/?Do=gpsArchives&path=ALMANACS/SEM&year=2016"> <strong>Click here to download GPS Almanac files for 2016</strong></a>
+<p> <a href="ftp://cddis.gsfc.nasa.gov/gnss/data/daily/"> <strong>Click here to download GPS Ephemeris files for 2016</strong></a>	 
+
+<h1>Simulation procedure: </h1>
+<p>1. Carrier Frequency: 1.57GHz. We generated the GPS signal tested on spectrum analyzer.</p>
+<img src="http://s11.sinaimg.cn/middle/002Kx6Fvgy71dg6mLeWca&690" width="304" height="300">
+<p>We found the generated signal waveform seat around the center frequency 1.57GHz. </p>
+
+<p>2. We sent the signal into the airspace through USRP and tested the signal in my i-phone </p>
+<img src="http://s3.amazonaws.com/img.tnt/1f2659a/c1f9_l.jpg" width="304" height="300">
+<p> This is the real location. After we sent the preset location information into airspace,
+The location information received by my phone has been changed: </p>
+<img src="http://s3.amazonaws.com/img.tnt/7e3e77d/5f6a_l.jpg" width="304" height="300">
+<p> We can see that the GPS information in my phone has been changed to what we have sent 
+through USRP. </p>
+
+<h1> 3. Test on DJI Phantom III Standard </h1>
+
+<p> I.Sending spoofing GPS signal once when UAV hovering.</p>
+<p> We moved the testing platform to the open area.</p>
+<p> Turned on UAV and make it hover in a specific elevation. </p>
+<p> Then we generated the spoofing GPS signal and sent it into the airspace(change the latitude and longitude)</p>
+<p> Finally we found that the UAV changed its heading. </p>
+<p> <a href="https://www.youtube.com/watch?v=Ggs7QsGJw0M"> <strong>check the video for spoofing once</strong> </a> </p>
+
+<p> II. Sending spoofing GPS signal twice during waypoint flying. </p>
+<p> Turn on UAV and record a flying waypiont. </p>
+<P> Playback the recorded waypoint and send the spoofing GPS signal twice. </p>
+<p> Finally we found that the UAV changed its heading twice.
+<p> <a href="https://www.youtube.com/watch?v=v2WO_FtbiaM"> <strong>check the video for spoofing twice </strong> </a> </p>
+
+	
+</body>
+</html>

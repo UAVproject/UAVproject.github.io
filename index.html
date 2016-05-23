@@ -7,7 +7,7 @@
 <body>
 	
 <h1> Purpose of the project </h1>
-<p> Generate a spoofing GPS signal to make a flying a UAV out of control and hijack the UAV. GPS “spoofers” are devices that create false GPS signals to fool receivers into thinking that they are at a different location or different times, this type of attacks can be really useful in a multitude of scenarios.
+<p> Generate a spoofing GPS signal to make a flying a UAV out of control and hijack the UAV. GPS 鈥渟poofers鈥?are devices that create false GPS signals to fool receivers into thinking that they are at a different location or different times, this type of attacks can be really useful in a multitude of scenarios.
 
 <h1> Three most pupolar GPS Spoofing ways</h1>
 <h2> 1. Non-flying zone spoofing. </h2>
@@ -27,7 +27,7 @@ another two positions (satellites) whose coordinates are already known too. So w
 
 <p> Now, our position coordinate (x, y, z) can be solved out of the equations.
 But it is not enough in engineering practice.  
-Because local clock and satellite clock are not synchronized, there is a time deviation ∆t1 between them. The revised equation set as below: </p>
+Because local clock and satellite clock are not synchronized, there is a time deviation 鈭唗1 between them. The revised equation set as below: </p>
 <img src="http://s3.amazonaws.com/img.tnt/d43325d/5b23_l.jpg">
 
 <p>The clocks carried by each GPS satellites are high precision atomic clocks, which are in strict synchronization state. So we have the following equation: </p>
@@ -86,7 +86,7 @@ through USRP. </p>
 <h1>Update:</h1>
 <p><strong> FCC limitations: </strong> </p>
 <p>"For operations in the 746-758 MHz, 775-788 MHz, and 805-806 MHz bands,
-emissions in the band 1559-1610 MHz shall be limited to −70 dBW/MHz" </p>
+emissions in the band 1559-1610 MHz shall be limited to 鈭?0 dBW/MHz" </p>
 <p> <a href="https://transition.fcc.gov/oet/prd/GPS-WORKSHOP_6-20-14/PANEL_2/2-1_Helzer_FCC.pdf"> <strong> Resources from FCC <strong> </a> </p>
 <P> "It is a violation of federal law to use a cell jammer or similar devices that intentionally block, jam, or interfere with authorized radio communications such as cell phones, police radar, GPS, and Wi-Fi." </p>
 <p> <a href="https://www.fcc.gov/general/jamming-cell-phones-and-gps-equipment-against-law"	> <strong> Jamming Cell Phones and GPS Equipment is Against the Law </strong> </a> </p>
@@ -98,8 +98,22 @@ for a Single-Antenna Receiver </p>
 <p>C. Defenses Based on Drift Monitoring</p>
 
 <h1>Update:</h1>
-<p>Emissions in the band 1559-1610 MHz shall be limited to −70 dBW/MHz. Bandwidth of generated gps signal in our test is 10MHz, which means our maximum power shouldn't over -30dBm.
+<p>Emissions in the band 1559-1610 MHz shall be limited to 鈭?0 dBW/MHz. Bandwidth of generated gps signal in our test is 10MHz, which means our maximum power shouldn't over -30dBm.
 	In our test environment, the reference power level is -50dBm. UAV can be easily spoofed when we set the gain to 20, which is under FCC limitations.
+	
+<h1>Update:</h1>
+<p><strong>Test On Mobile Navigation</strong> </p>
+<p>Open google map锛宻et UCDavis(38掳 32鈥?14鈥?N, 121掳 45鈥?17鈥?W) as start point and SFO as destination </p>
+<p>Start navigation</p>
+<p>Generate spoofing GPS signal(San Jose锛?7掳 20鈥?0鈥?N, 121掳 54鈥?0鈥?W)</p>
+<p>After longtime waiting (5-6 mins), we find the original start point changed to San Jose and a new navigation path has been created</p>
 
+<h1>Update:</h1>
+<p><strong>No-fly Zone Test</strong> </p>
+<p>First we get no-fly location information of SFO (37掳38鈥?8鈥?N, 122掳20'31鈥?W)</p>
+<p>Then generate GPS signal of this location</p> 
+<p>Our UAV landed on ground when spoofed by this fake signal</p>
+
+	
 </body>
 </html>
